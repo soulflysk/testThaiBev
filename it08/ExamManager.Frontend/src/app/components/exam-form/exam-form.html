@@ -1,0 +1,37 @@
+<div class="form-container">
+  <div class="header">
+    <h1>IT 08-2</h1>
+  </div>
+  
+  <div class="form-content">
+    <div class="form-group">
+      <label for="question">คำถาม</label>
+      <input type="text" id="question" [(ngModel)]="examForm.question" placeholder="กรอกคำถาม">
+    </div>
+    
+    <div class="form-group">
+      <label for="answer1">คำตอบ 1</label>
+      <input type="text" id="answer1" [(ngModel)]="examForm.answer1" placeholder="กรอกคำตอบ 1">
+    </div>
+    
+    <div class="form-group">
+      <label for="answer2">คำตอบ 2</label>
+      <input type="text" id="answer2" [(ngModel)]="examForm.answer2" placeholder="กรอกคำตอบ 2">
+    </div>
+    
+    <div class="form-group">
+      <label for="answer3">คำตอบ 3</label>
+      <input type="text" id="answer3" [(ngModel)]="examForm.answer3" placeholder="กรอกคำตอบ 3">
+    </div>
+    
+    <div class="form-group">
+      <label for="answer4">คำตอบ 4</label>
+      <input type="text" id="answer4" [(ngModel)]="examForm.answer4" placeholder="กรอกคำตอบ 4">
+    </div>
+    
+    <div class="button-group">
+      <button class="save-btn" (click)="saveExam()">บันทึก</button>
+      <button class="cancel-btn" (click)="cancel()">ยกเลิก</button>
+    </div>
+  </div>
+</div>

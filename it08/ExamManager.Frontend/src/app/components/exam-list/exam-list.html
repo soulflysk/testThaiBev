@@ -1,0 +1,40 @@
+<div class="exam-container">
+  <div class="header">
+    <h1>IT 08-1</h1>
+    <div>
+      <button class="refresh-btn" (click)="loadExams()">Refresh</button>
+      <button class="add-btn" (click)="addExam()">+ เพิ่มข้อสอบ</button>
+    </div>
+  </div>
+  
+  <div class="exam-list">
+    @for (exam of exams; track exam.id) {
+    <div class="exam-item">
+      <div class="question-number">{{ exam.question }}</div>
+      <div class="answers">
+        <label class="radio-option">
+          <input type="radio" name="answer-{{exam.id}}" value="1">
+          <span>{{ exam.answer1 }}</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="answer-{{exam.id}}" value="2">
+          <span>{{ exam.answer2 }}</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="answer-{{exam.id}}" value="3">
+          <span>{{ exam.answer3 }}</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="answer-{{exam.id}}" value="4">
+          <span>{{ exam.answer4 }}</span>
+        </label>
+      </div>
+      <button class="delete-btn" (click)="deleteExam(exam.id)">ลบ</button>
+    </div>
+    } @empty {
+      <div style="text-align: center; padding: 20px; color: #666;">
+        ไม่มีข้อสอบ
+      </div>
+    }
+  </div>
+</div>

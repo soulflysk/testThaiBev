@@ -1,0 +1,26 @@
+<div class="queue-container">
+  <div class="queue-card">
+    <h1 class="title">ล้างคิว</h1>
+    
+    <div class="current-queue">
+      <h2>หมายเลขคิวปัจจุบัน</h2>
+      <div class="queue-number">
+        {{ currentQueue }}
+      </div>
+    </div>
+    
+    <div class="button-container">
+      <button 
+        class="queue-btn primary" 
+        (click)="onClearQueue()">
+        ล้างคิว
+      </button>
+      
+      <button 
+        class="queue-btn secondary" 
+        (click)="onBackToQueue()">
+        กลับไปหน้ารับบัตรคิว
+      </button>
+    </div>
+  </div>
+</div>

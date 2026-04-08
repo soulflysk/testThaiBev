@@ -1,0 +1,170 @@
+<div class="container">
+  <h1>IT 04-1 Form</h1>
+  
+  <form [formGroup]="it04Form" class="form-container">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input 
+          type="text" 
+          id="firstName" 
+          formControlName="firstName" 
+          placeholder="Enter your first name"
+          class="form-control"
+        />
+        <div class="error-message" *ngIf="it04Form.get('firstName')?.touched && it04Form.get('firstName')?.invalid">
+          <span *ngIf="it04Form.get('firstName')?.errors?.['required']">First Name is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input 
+          type="text" 
+          id="lastName" 
+          formControlName="lastName" 
+          placeholder="Enter your last name"
+          class="form-control"
+        />
+        <div class="error-message" *ngIf="it04Form.get('lastName')?.touched && it04Form.get('lastName')?.invalid">
+          <span *ngIf="it04Form.get('lastName')?.errors?.['required']">Last Name is required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          placeholder="example@email.com"
+          class="form-control"
+        />
+        <div class="error-message" *ngIf="it04Form.get('email')?.touched && it04Form.get('email')?.invalid">
+          <span *ngIf="it04Form.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="it04Form.get('email')?.errors?.['email']">Email format is invalid</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          formControlName="phone" 
+          placeholder="0123456789"
+          class="form-control"
+        />
+        <div class="error-message" *ngIf="it04Form.get('phone')?.touched && it04Form.get('phone')?.invalid">
+          <span *ngIf="it04Form.get('phone')?.errors?.['required']">Phone is required</span>
+          <span *ngIf="it04Form.get('phone')?.errors?.['pattern']">Phone must be 10 digits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Sex:</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input 
+              type="radio" 
+              name="sex" 
+              value="male" 
+              formControlName="sex"
+            />
+            Male
+          </label>
+          <label class="radio-label">
+            <input 
+              type="radio" 
+              name="sex" 
+              value="female" 
+              formControlName="sex"
+            />
+            Female
+          </label>
+        </div>
+        <div class="error-message" *ngIf="it04Form.get('sex')?.touched && it04Form.get('sex')?.invalid">
+          <span *ngIf="it04Form.get('sex')?.errors?.['required']">Sex is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="birthDay">Birth Day:</label>
+        <input 
+          type="text" 
+          id="birthDay" 
+          formControlName="birthDay" 
+          placeholder="DD/MM/YYYY"
+          class="form-control"
+        />
+        <div class="error-message" *ngIf="it04Form.get('birthDay')?.touched && it04Form.get('birthDay')?.invalid">
+          <span *ngIf="it04Form.get('birthDay')?.errors?.['required']">Birth Day is required</span>
+          <span *ngIf="it04Form.get('birthDay')?.errors?.['invalidDateFormat']">Birth Day format must be DD/MM/YYYY</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="occupation">Occupation:</label>
+        <select 
+          id="occupation" 
+          formControlName="occupation" 
+          class="form-control"
+        >
+          <option value="">Select Occupation</option>
+          <option *ngFor="let occ of occupations" [value]="occ">{{ occ }}</option>
+        </select>
+        <div class="error-message" *ngIf="it04Form.get('occupation')?.touched && it04Form.get('occupation')?.invalid">
+          <span *ngIf="it04Form.get('occupation')?.errors?.['required']">Occupation is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="profile">Profile:</label>
+        <input 
+          type="file" 
+          id="profile" 
+          (change)="onFileChange($event)"
+          accept="image/*"
+          class="form-control"
+        />
+        <div class="image-preview" *ngIf="profileImageBase64">
+          <img [src]="profileImageBase64" alt="Profile Preview" class="preview-img" />
+        </div>
+        <div class="error-message" *ngIf="it04Form.get('profile')?.touched && it04Form.get('profile')?.invalid">
+          <span *ngIf="it04Form.get('profile')?.errors?.['required']">Profile is required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button 
+        type="button" 
+        (click)="onSave()" 
+        class="btn btn-save"
+        [disabled]="!it04Form.valid || isLoading"
+      >
+        <span *ngIf="!isLoading">Save</span>
+        <span *ngIf="isLoading">Saving...</span>
+      </button>
+      <button 
+        type="button" 
+        (click)="onClear()" 
+        class="btn btn-clear"
+        [disabled]="isLoading"
+      >
+        Clear
+      </button>
+    </div>
+  </form>
+
+  <div class="success-message" *ngIf="saveMessage">
+    <p>{{ saveMessage }}</p>
+    <p *ngIf="savedId">Generated ID: <strong>{{ savedId }}</strong></p>
+  </div>
+</div>

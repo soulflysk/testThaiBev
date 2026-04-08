@@ -1,0 +1,47 @@
+<div class="welcome-container">
+  <div class="welcome-card">
+    <h2>IT 02-3 Welcome Form</h2>
+    
+    <div class="welcome-message">
+      <h3>Welcome User: {{ username }}</h3>
+    </div>
+
+    <div class="token-status">
+      <div class="status-item">
+        <span class="status-label">Token Status:</span>
+        <span class="status-value" [class.valid]="isTokenValid" [class.invalid]="!isTokenValid">
+          {{ isTokenValid ? 'Valid ✅' : 'Invalid ❌' }}
+        </span>
+      </div>
+      
+      <div class="status-item">
+        <span class="status-label">Logged in at:</span>
+        <span class="status-value">{{ loginTime }}</span>
+      </div>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="actions">
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        (click)="onValidateToken()"
+        [disabled]="isLoading"
+      >
+        <span *ngIf="!isLoading">Validate Token</span>
+        <span *ngIf="isLoading">Validating...</span>
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        (click)="onLogout()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</div>

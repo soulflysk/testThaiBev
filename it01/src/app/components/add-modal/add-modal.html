@@ -1,0 +1,55 @@
+<div class="modal fade" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">IT 01-2</h5>
+        <button type="button" class="btn-close" (click)="onClose()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label"></label>
+            <div class="row">
+              <div class="col">
+                <label>ชื่อ</label>
+                <input type="text" class="form-control" [(ngModel)]="formData.name" name="name" placeholder="">
+              </div>
+              <div class="col">
+                <label>นามสกุล</label>
+                <input type="text" class="form-control" [(ngModel)]="formData.surname" name="surname" placeholder="">
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label"></label>
+            <div class="input-group">
+              <label>วันเกิด</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.birthDate" name="birthDate" 
+                     placeholder="dd/mm/yyyy" (input)="onBirthDateChange()">
+              <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label"></label>
+            <label>อายุ</label>
+            <input type="text" class="form-control" value="{{ calculateAge(formData.birthDate) }} " readonly>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label"></label>
+            <label>ที่อยู่</label>
+            <textarea class="form-control" [(ngModel)]="formData.address" name="address" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">ยกเลิก</button>
+        <button type="button" class="btn btn-primary" (click)="onSave()">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade" [class.show]="showModal" *ngIf="showModal"></div>

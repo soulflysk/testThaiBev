@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <h1>ระบบอนุมัติเอกสาร</h1>
+  </div>
+  
+  <div class="actions">
+    <button 
+      class="btn btn-approve" 
+      (click)="onApproveClick()" 
+      [disabled]="!canApprove()">
+      อนุมัติ
+    </button>
+    <button 
+      class="btn btn-reject" 
+      (click)="onRejectClick()" 
+      [disabled]="!canReject()">
+      ไม่อนุมัติ
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th class="checkbox-column">อนุมัติ</th>
+          <th>รายการ</th>
+          <th>เหตุผล</th>
+          <th>สถานะเอกสาร</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of items; track item.id) {
+        <tr>
+          <td class="checkbox-column">
+            <input 
+              type="checkbox" 
+              [checked]="isItemSelected(item.id)"
+              [disabled]="isItemDisabled(item)"
+              (change)="onItemSelect(item.id, $event)">
+          </td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.reason }}</td>
+          <td>
+            <span 
+              class="status-badge"
+              [class.status-pending]="item.status === 'รออนุมัติ'"
+              [class.status-approved]="item.status === 'อนุมัติ'"
+              [class.status-rejected]="item.status === 'ไม่อนุมัติ'">
+              {{ item.status }}
+            </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-approval-modal 
+  [isVisible]="showApprovalModal"
+  (approve)="onApproveConfirm($event)"
+  (cancel)="onModalCancel()">
+</app-approval-modal>
+
+<app-rejection-modal 
+  [isVisible]="showRejectionModal"
+  (reject)="onRejectConfirm($event)"
+  (cancel)="onModalCancel()">
+</app-rejection-modal>

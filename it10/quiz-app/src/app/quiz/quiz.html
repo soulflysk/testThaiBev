@@ -1,0 +1,62 @@
+<div class="quiz-container">
+  <h1>IT 10-1: Quiz</h1>
+  
+  <div class="user-info" *ngIf="!quizState.name">
+    <div class="form-group">
+      <label for="userName">Enter your name:</label>
+      <input 
+        type="text" 
+        id="userName" 
+        [(ngModel)]="userName" 
+        placeholder="Your name"
+        class="name-input"
+      />
+      <button (click)="startQuiz()" [disabled]="!userName.trim()" class="btn btn-primary">
+        Start Quiz
+      </button>
+    </div>
+  </div>
+
+  <div class="quiz-content" *ngIf="quizState.name">
+    <div class="user-header">
+      <p>Quiz for: <strong>{{ quizState.name }}</strong></p>
+    </div>
+
+    <div class="questions">
+      <div 
+        *ngFor="let question of questions; let i = index" 
+        class="question-item"
+      >
+        <h3>Question {{ i + 1 }}: {{ question.text }}</h3>
+        <div class="options">
+          <div 
+            *ngFor="let option of question.options; let j = index" 
+            class="option-item"
+          >
+            <input 
+              type="radio" 
+              [id]="'q' + question.id + '_opt' + j" 
+              [name]="'question' + question.id"
+              [value]="j"
+              [checked]="quizState.selectedAnswers[question.id] === j"
+              (change)="selectAnswer(question.id, j)"
+            />
+            <label [for]="'q' + question.id + '_opt' + j">
+              {{ option }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-actions">
+      <button 
+        (click)="submitQuiz()" 
+        [disabled]="!isQuizComplete()" 
+        class="btn btn-submit"
+      >
+        Submit Quiz
+      </button>
+    </div>
+  </div>
+</div>

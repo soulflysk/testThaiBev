@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="input-section">
+    <label for="productCode">รหัสสินค้า</label>
+    <input 
+      type="text" 
+      id="productCode" 
+      [(ngModel)]="formattedProductCode" 
+      (input)="onInputChange($event)"
+      (keydown)="onKeyDown($event)"
+      maxlength="41"
+      placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX"
+      [class.error]="errorMessage"
+    />
+    <button class="btn btn-primary" (click)="addProductCode()" [disabled]="!isValidCode()">
+      ADD
+    </button>
+  </div>
+  
+  @if (errorMessage) {
+    <div class="error-message">{{ errorMessage }}</div>
+  }
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>รหัสสินค้า (36 หลัก)</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of productCodes; track item.id) {
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.code }}</td>
+            <td>
+              <button class="btn btn-success" (click)="showQRCode(item.code)">QR</button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="confirmDelete(item.id, item.code)">ลบ</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- QR Code Modal -->
+@if (showQRModal) {
+  <div class="modal-overlay" (click)="closeQRModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>QR Code</h2>
+      <div class="qr-container">
+        <canvas #qrCanvas></canvas>
+      </div>
+      <button class="btn btn-primary" (click)="closeQRModal()">Close</button>
+    </div>
+  </div>
+}
+
+<!-- Delete Confirmation Modal -->
+@if (showDeleteModal) {
+  <div class="modal-overlay" (click)="closeDeleteModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <p>ต้องการลบข้อมูล รหัสสินค้า: {{ deleteItemCode }} หรือไม่ ?</p>
+      <div class="modal-buttons">
+        <button class="btn btn-primary" (click)="deleteProductCode()">ตกลง</button>
+        <button class="btn btn-danger" (click)="closeDeleteModal()">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+}

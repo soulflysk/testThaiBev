@@ -1,0 +1,22 @@
+<div class="queue-container">
+  <div class="queue-card">
+    <h1 class="title">ระบบจ่ายบัตรคิว</h1>
+    
+    <div class="button-container">
+      <button 
+        class="queue-btn primary" 
+        (click)="onGetQueue()"
+        [disabled]="isProcessing || isQueueProcessing()">
+        <span *ngIf="!isProcessing">รับบัตรคิว</span>
+        <span *ngIf="isProcessing">กำลังดำเนินการ...</span>
+      </button>
+      
+      <button 
+        class="queue-btn secondary" 
+        (click)="onClearQueue()"
+        [disabled]="isProcessing">
+        ล้างคิว
+      </button>
+    </div>
+  </div>
+</div>

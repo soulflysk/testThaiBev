@@ -1,0 +1,64 @@
+<div class="result-container">
+  <h1>IT 10-2: Quiz Results</h1>
+  
+  <div *ngIf="result" class="result-content">
+    <div class="result-header">
+      <h2>Quiz Completed!</h2>
+      <p class="congratulations">Congratulations, {{ result.name }}!</p>
+    </div>
+
+    <div class="score-display">
+      <div class="score-circle">
+        <span class="score-text">{{ result.score }}/{{ result.totalQuestions }}</span>
+      </div>
+      <p class="score-percentage">{{ percentage }}%</p>
+    </div>
+
+    <div class="result-details">
+      <h3>Quiz Summary</h3>
+      <div class="detail-item">
+        <span class="label">Name:</span>
+        <span class="value">{{ result.name }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Score:</span>
+        <span class="value">{{ result.score }} out of {{ result.totalQuestions }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Date:</span>
+        <span class="value">{{ result.timestamp | date:'long' }}</span>
+      </div>
+    </div>
+
+    <div class="answer-review" *ngIf="showDetails">
+      <h3>Answer Review</h3>
+      <div *ngFor="let question of questions; let i = index" class="answer-item">
+        <div class="question-text">Question {{ i + 1 }}: {{ question.text }}</div>
+        <div class="answers">
+          <div class="user-answer" [class.correct]="isCorrect(question.id, i)" [class.incorrect]="!isCorrect(question.id, i)">
+            Your answer: {{ getUserAnswer(question.id) }}
+          </div>
+          <div class="correct-answer" *ngIf="!isCorrect(question.id, i)">
+            Correct answer: {{ question.options[question.correctAnswer] }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button (click)="toggleDetails()" class="btn btn-secondary">
+        {{ showDetails ? 'Hide' : 'Show' }} Answer Review
+      </button>
+      <button (click)="takeQuizAgain()" class="btn btn-primary">
+        Take Quiz Again
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!result" class="no-result">
+    <p>No quiz results found. Please take the quiz first.</p>
+    <button (click)="goToQuiz()" class="btn btn-primary">
+      Take Quiz
+    </button>
+  </div>
+</div>

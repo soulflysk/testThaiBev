@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2 class="mb-4">IT 01-1</h2>
+  
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" (click)="openAddModal()">
+      <i class="fas fa-plus me-2"></i>ADD
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center">Id</th>
+          <th class="text-center">ชื่อ-สกุล</th>
+          <th class="text-center">ที่อยู่</th>
+          <th class="text-center">วันเกิด</th>
+          <th class="text-center">อายุ</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (person of people; track person.id) {
+          <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }} {{ person.surname }}</td>
+            <td>{{ person.address }}</td>
+            <td>{{ person.birthDate }}</td>
+            <td>{{ person.age }}</td>
+            <td>
+              <button class="btn btn-info btn-sm" (click)="openViewModal(person.id)">
+                View
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Modal -->
+<app-add-modal 
+  [showModal]="showAddModal" 
+  (close)="closeAddModal()" 
+  (save)="onSavePerson($event)">
+</app-add-modal>
+
+<!-- View Modal -->
+<app-view-modal 
+  [showModal]="showViewModal" 
+  [person]="selectedPerson"
+  (close)="closeViewModal()">
+</app-view-modal>

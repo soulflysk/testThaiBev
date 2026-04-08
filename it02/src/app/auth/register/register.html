@@ -1,0 +1,69 @@
+<div class="register-container">
+  <div class="register-form">
+    <h2>IT 02-2 Registration Form</h2>
+    
+    <div class="form-group">
+      <label for="username">User:</label>
+      <input 
+        type="text" 
+        id="username" 
+        [(ngModel)]="username" 
+        name="username"
+        class="form-control"
+        placeholder="กรอกชื่อผู้ใช้"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input 
+        type="password" 
+        id="password" 
+        [(ngModel)]="password" 
+        name="password"
+        class="form-control"
+        placeholder="กรอกรหัสผ่าน"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input 
+        type="password" 
+        id="confirmPassword" 
+        [(ngModel)]="confirmPassword" 
+        name="confirmPassword"
+        class="form-control"
+        placeholder="กรอกรหัสผ่านอีกครั้ง"
+      />
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="success-message" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <div class="button-group">
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        (click)="onRegister()"
+        [disabled]="!username || !password || !confirmPassword || isLoading"
+      >
+        <span *ngIf="!isLoading">สมัครสมาชิก</span>
+        <span *ngIf="isLoading">กำลังดำเนินการ...</span>
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        (click)="onBackToLogin()"
+      >
+        กลับหน้าเข้าสู่ระบบ
+      </button>
+    </div>
+  </div>
+</div>

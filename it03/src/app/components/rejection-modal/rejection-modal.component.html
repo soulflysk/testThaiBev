@@ -1,0 +1,29 @@
+@if (isVisible) {
+<div class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>ยืนยันการไม่อนุมัติ</h3>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="rejection-reason">เหตุผล:</label>
+        <textarea 
+          id="rejection-reason" 
+          [(ngModel)]="reason" 
+          placeholder="กรุณาระบุเหตุผลการไม่อนุมัติ"
+          rows="4"
+          class="form-control">
+        </textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onReject()" [disabled]="!reason.trim()" class="btn btn-reject">
+        ไม่อนุมัติ
+      </button>
+      <button (click)="onCancel()" class="btn btn-cancel">
+        ยกเลิก
+      </button>
+    </div>
+  </div>
+</div>
+}
