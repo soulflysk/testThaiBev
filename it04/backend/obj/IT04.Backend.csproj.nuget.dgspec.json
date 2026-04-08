@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Data\\Codes\\testThaiBev\\IT04-Project\\backend\\IT04.Backend.csproj": {}
+    "C:\\Data\\Codes\\testThaiBev\\it04\\backend\\IT04.Backend.csproj": {}
   },
   "projects": {
-    "C:\\Data\\Codes\\testThaiBev\\IT04-Project\\backend\\IT04.Backend.csproj": {
+    "C:\\Data\\Codes\\testThaiBev\\it04\\backend\\IT04.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Data\\Codes\\testThaiBev\\IT04-Project\\backend\\IT04.Backend.csproj",
+        "projectUniqueName": "C:\\Data\\Codes\\testThaiBev\\it04\\backend\\IT04.Backend.csproj",
         "projectName": "IT04.Backend",
-        "projectPath": "C:\\Data\\Codes\\testThaiBev\\IT04-Project\\backend\\IT04.Backend.csproj",
+        "projectPath": "C:\\Data\\Codes\\testThaiBev\\it04\\backend\\IT04.Backend.csproj",
         "packagesPath": "C:\\Users\\Tanade\\.nuget\\packages\\",
-        "outputPath": "C:\\Data\\Codes\\testThaiBev\\IT04-Project\\backend\\obj\\",
+        "outputPath": "C:\\Data\\Codes\\testThaiBev\\it04\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

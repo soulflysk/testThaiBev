@@ -1,3 +1,90 @@
+// Success Popup - Fixed Position Top Right
+.success-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-width: 400px;
+  animation: slideInRight 0.5s ease;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.popup-icon {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.popup-text {
+  flex: 1;
+  
+  p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    
+    &:last-child {
+      margin-top: 4px;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+  }
+  
+  strong {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+  }
+}
+
+.popup-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -184,6 +271,26 @@ label {
 
 // Responsive design
 @media (max-width: 768px) {
+  .success-popup {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .popup-content {
+    padding: 12px 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
   .container {
     max-width: 600px;
     padding: 15px;
